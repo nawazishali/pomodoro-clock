@@ -1,0 +1,51 @@
+$button-color: #28262f;
+body {
+    text-align: center;
+    main h1 {
+        font-size: 80px;
+        margin-bottom: 10px;
+    }
+}
+
+h2 {
+    font-size: 30px;
+}
+
+button {
+    background-color: $button-color;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    border: none;
+    &:hover {
+        box-shadow: 0px 0px 10px grey;
+    }
+    &:focus {
+        outline: none;
+    }
+}
+
+.clock-controls {
+    margin: 0 auto;
+    display: flex;
+    width: 50%;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.btn-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0 auto;
+    width: 150px;
+    h3 {
+        font-size: 44px;
+        width: 100%;
+        height: 50px;
+        margin: 0;
+        background-color: #535353;
+        color: white;
+    }
+}
