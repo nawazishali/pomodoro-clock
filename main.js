@@ -1,23 +1,48 @@
 function decrement(targetId) {
-    var targetId = document.getElementById(targetId);
-    var currentVal = parseInt(targetId.innerHTML);
-    if (currentVal <= 1) {
-        return false;
+    if (targetId === "session-time") {
+        var targetId = document.getElementById(targetId);
+        var currentVal = parseInt(targetId.value);
+        if (currentVal <= 0) {
+            return false;
+        } else {
+            var newVal = (currentVal - 1).toString();
+            targetId.value = newVal;
+            document.getElementById('clock').innerHTML = formatTime(parseInt(newVal) * 60);
+        }
     } else {
-        var newVal = (currentVal - 1).toString();
-        targetId.innerHTML = newVal;
+        var targetId = document.getElementById(targetId);
+        var currentVal = parseInt(targetId.value);
+        if (currentVal <= 0) {
+            return false;
+        } else {
+            var newVal = (currentVal - 1).toString();
+            targetId.value = newVal;
+        }
     }
+
 
 }
 
 function increment(targetId) {
-    var targetId = document.getElementById(targetId);
-    var currentVal = parseInt(targetId.innerHTML);
-    if (currentVal >= 60) {
-        return false;
+    if (targetId === "session-time") {
+        var targetId = document.getElementById(targetId);
+        var currentVal = parseInt(targetId.value);
+        if (currentVal >= 60) {
+            return false;
+        } else {
+            var newVal = (currentVal + 1).toString();
+            targetId.value = newVal;
+            document.getElementById('clock').innerHTML = formatTime(parseInt(newVal) * 60);
+        }
     } else {
-        var newVal = (currentVal + 1).toString();
-        targetId.innerHTML = newVal;
+        var targetId = document.getElementById(targetId);
+        var currentVal = parseInt(targetId.value);
+        if (currentVal >= 60) {
+            return false;
+        } else {
+            var newVal = (currentVal + 1).toString();
+            targetId.value = newVal;
+        }
     }
 }
 
@@ -35,22 +60,25 @@ function formatTime(time) {
 
 
 var clock = document.getElementById('clock');
-var sessionInSeconds = parseInt(document.getElementById('session-time').innerHTML) * 60;
-var breakinSeconds = parseInt(document.getElementById('break-time').innerHTML) * 60;
-var sessionT = sessionInSeconds;
-var breakT = breakinSeconds;
+var audio = document.getElementById('audio');
 
 function startTimer() {
+    var sessionInSeconds = parseInt(document.getElementById('session-time').value) * 60;
+    var breakinSeconds = parseInt(document.getElementById('break-time').value) * 60;
+    var sessionT = sessionInSeconds;
+    var breakT = breakinSeconds;
     var sessionTimer = setInterval(function () {
         clock.innerHTML = formatTime(sessionT);
         sessionT--;
         if (sessionT < 0) {
             clearInterval(sessionTimer);
+            audio.play();
             var breakTimer = setInterval(function () {
                 clock.innerHTML = formatTime(breakT);
                 breakT--;
                 if (breakT < 0) {
                     clearInterval(breakTimer);
+                    audio.pause();
                     sessionT = sessionInSeconds;
                     breakT = breakinSeconds;
                     startTimer();
@@ -66,6 +94,7 @@ function stopTimer() {
         window.clearInterval(i);
     }
 }
+
 
 var toggleBtn = document.getElementById('timer-toggle');
 toggleBtn.onclick = function () {
