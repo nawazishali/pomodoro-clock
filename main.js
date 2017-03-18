@@ -78,7 +78,7 @@ function startTimer() {
                 breakT--;
                 if (breakT < 0) {
                     clearInterval(breakTimer);
-                    audio.pause();
+                    audio.load();
                     sessionT = sessionInSeconds;
                     breakT = breakinSeconds;
                     startTimer();
@@ -101,6 +101,8 @@ toggleBtn.onclick = function () {
     if (toggleBtn.innerHTML === "Stop Timer") {
         toggleBtn.innerHTML = "Start Timer";
         stopTimer();
+        audio.pause();
+        audio.load();
     } else {
         toggleBtn.innerHTML = "Stop Timer";
         startTimer();
