@@ -111,14 +111,11 @@ h2 {
     }
 }
 
-#clock {
+#clock-container {
     width: 90%;
     margin: 0 auto;
     margin-top: 30px;
-    font-size: 150px;
-    text-shadow: none;
     padding-bottom: 20px;
-    color: rgba(45, 45, 45, 0.90);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     background-color: aquamarine;
@@ -131,6 +128,16 @@ h2 {
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cedbe9', endColorstr='#26558b', GradientType=0);
     /* IE6-9 */
+    h1 {
+        font-size: 150px;
+        text-shadow: none;
+        color: rgba(45, 45, 45, 0.90);
+    }
+    p{
+        margin: 0;
+        font-size: 20px;
+        color: rgba(45, 45, 45, 0.90);
+    }
 }
 
 .animate {

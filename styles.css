@@ -111,14 +111,11 @@ h2 {
     pointer-events: none; }
 
 /* line 114, C:/Users/Zahra Nawazish/Desktop/Pomodoro Clock/styles.scss */
-#clock {
+#clock-container {
   width: 90%;
   margin: 0 auto;
   margin-top: 30px;
-  font-size: 150px;
-  text-shadow: none;
   padding-bottom: 20px;
-  color: rgba(45, 45, 45, 0.9);
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   background-color: aquamarine;
@@ -131,19 +128,29 @@ h2 {
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cedbe9', endColorstr='#26558b', GradientType=0);
   /* IE6-9 */ }
+  /* line 131, C:/Users/Zahra Nawazish/Desktop/Pomodoro Clock/styles.scss */
+  #clock-container h1 {
+    font-size: 150px;
+    text-shadow: none;
+    color: rgba(45, 45, 45, 0.9); }
+  /* line 136, C:/Users/Zahra Nawazish/Desktop/Pomodoro Clock/styles.scss */
+  #clock-container p {
+    margin: 0;
+    font-size: 20px;
+    color: rgba(45, 45, 45, 0.9); }
 
-/* line 136, C:/Users/Zahra Nawazish/Desktop/Pomodoro Clock/styles.scss */
+/* line 143, C:/Users/Zahra Nawazish/Desktop/Pomodoro Clock/styles.scss */
 .animate {
   transition: all 0.1s;
   -webkit-transition: all 0.1s; }
 
-/* line 141, C:/Users/Zahra Nawazish/Desktop/Pomodoro Clock/styles.scss */
+/* line 148, C:/Users/Zahra Nawazish/Desktop/Pomodoro Clock/styles.scss */
 .black {
   background-color: #28262f;
   border-bottom: 5px solid #161616;
   text-shadow: 0px -2px #161616; }
 
-/* line 148, C:/Users/Zahra Nawazish/Desktop/Pomodoro Clock/styles.scss */
+/* line 155, C:/Users/Zahra Nawazish/Desktop/Pomodoro Clock/styles.scss */
 .active,
 button:active {
   transform: translate(0px, 0px);

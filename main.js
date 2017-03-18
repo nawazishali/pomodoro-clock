@@ -65,6 +65,8 @@ var audio = document.getElementById('audio');
 function startTimer() {
     var sessionInSeconds = parseInt(document.getElementById('session-time').value) * 60;
     var breakinSeconds = parseInt(document.getElementById('break-time').value) * 60;
+    var status = document.getElementById('status');
+    status.innerHTML = "Time to Work";
     var sessionT = sessionInSeconds;
     var breakT = breakinSeconds;
     var sessionTimer = setInterval(function () {
@@ -73,6 +75,7 @@ function startTimer() {
         if (sessionT < 0) {
             clearInterval(sessionTimer);
             audio.play();
+            status.innerHTML = "Enjoy your Break";
             var breakTimer = setInterval(function () {
                 clock.innerHTML = formatTime(breakT);
                 breakT--;
