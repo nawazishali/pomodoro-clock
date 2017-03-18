@@ -72,10 +72,26 @@ function startTimer() {
     var sessionTimer = setInterval(function () {
         clock.innerHTML = formatTime(sessionT);
         sessionT--;
-        if (sessionT < 0) {
+        if (sessionT <= 0) {
             clearInterval(sessionTimer);
             audio.play();
             status.innerHTML = "Enjoy your Break";
+            var musicBtn = document.getElementById("music");
+            musicBtn.onclick = function () {
+                if (musicBtn.classList.contains("fa-volume-up")) {
+                    musicBtn.classList.remove("fa-volume-up");
+                    musicBtn.classList.add("fa-volume-off");
+                    if (status.innerHTML === "Enjoy your Break") {
+                        audio.pause();
+                    }
+                } else {
+                    musicBtn.classList.remove("fa-volume-off");
+                    musicBtn.classList.add("fa-volume-up");
+                    if (status.innerHTML === "Enjoy your Break") {
+                        audio.play();
+                    }
+                }
+            };
             var breakTimer = setInterval(function () {
                 clock.innerHTML = formatTime(breakT);
                 breakT--;
@@ -109,5 +125,16 @@ toggleBtn.onclick = function () {
     } else {
         toggleBtn.innerHTML = "Stop Timer";
         startTimer();
+    }
+};
+
+var musicBtn = document.getElementById("music");
+musicBtn.onclick = function () {
+    if (musicBtn.classList.contains("fa-volume-up")) {
+        musicBtn.classList.remove("fa-volume-up");
+        musicBtn.classList.add("fa-volume-off");
+    } else {
+        musicBtn.classList.remove("fa-volume-off");
+        musicBtn.classList.add("fa-volume-up");
     }
 };
