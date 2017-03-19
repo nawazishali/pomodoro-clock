@@ -108,6 +108,8 @@ function startTimer() {
         } else if (breakinSeconds <= 0) {
             clearInterval(breakStart);
             audio.load();
+            sessionInSeconds = parseInt(document.getElementById('session-time').value) * 60;
+            breakinSeconds = parseInt(document.getElementById('break-time').value) * 60;
             startTimer();
         }
     }
