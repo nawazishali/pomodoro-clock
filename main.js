@@ -114,16 +114,22 @@ function stopTimer() {
     }
 }
 
-
+var buttons = document.getElementsByTagName("button");
 var toggleBtn = document.getElementById('timer-toggle');
 toggleBtn.onclick = function () {
     if (toggleBtn.innerHTML === "Stop Timer") {
         toggleBtn.innerHTML = "Start Timer";
+        for(var i = 0; i <= 3; i++){
+            buttons[i].disabled = false;
+        }
         stopTimer();
         audio.pause();
         audio.load();
     } else {
         toggleBtn.innerHTML = "Stop Timer";
+        for(var i = 0; i <= 3; i++){
+            buttons[i].disabled = true;
+        }
         startTimer();
     }
 };
