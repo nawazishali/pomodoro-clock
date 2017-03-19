@@ -1,22 +1,33 @@
+/* jshint undef: true, unused: false, evil: true */
+/* globals document, window, setInterval, clearInterval */
+
+var sessionInSeconds = parseInt(document.getElementById('session-time').value) * 60;
+var breakinSeconds = parseInt(document.getElementById('break-time').value) * 60;
+
 function decrement(targetId) {
+    var currentVal, newVal;
     if (targetId === "session-time") {
-        var targetId = document.getElementById(targetId);
-        var currentVal = parseInt(targetId.value);
+        targetId = document.getElementById(targetId);
+        currentVal = parseInt(targetId.value);
         if (currentVal <= 0) {
             return false;
         } else {
-            var newVal = (currentVal - 1).toString();
+            newVal = (currentVal - 1).toString();
             targetId.value = newVal;
             document.getElementById('clock').innerHTML = formatTime(parseInt(newVal) * 60);
+            sessionInSeconds = parseInt(document.getElementById('session-time').value) * 60;
+            breakinSeconds = parseInt(document.getElementById('break-time').value) * 60;
         }
     } else {
-        var targetId = document.getElementById(targetId);
-        var currentVal = parseInt(targetId.value);
+        targetId = document.getElementById(targetId);
+        currentVal = parseInt(targetId.value);
         if (currentVal <= 0) {
             return false;
         } else {
-            var newVal = (currentVal - 1).toString();
+            newVal = (currentVal - 1).toString();
             targetId.value = newVal;
+            sessionInSeconds = parseInt(document.getElementById('session-time').value) * 60;
+            breakinSeconds = parseInt(document.getElementById('break-time').value) * 60;
         }
     }
 
@@ -24,24 +35,29 @@ function decrement(targetId) {
 }
 
 function increment(targetId) {
+    var currentVal, newVal;
     if (targetId === "session-time") {
-        var targetId = document.getElementById(targetId);
-        var currentVal = parseInt(targetId.value);
+        targetId = document.getElementById(targetId);
+        currentVal = parseInt(targetId.value);
         if (currentVal >= 60) {
             return false;
         } else {
-            var newVal = (currentVal + 1).toString();
+            newVal = (currentVal + 1).toString();
             targetId.value = newVal;
             document.getElementById('clock').innerHTML = formatTime(parseInt(newVal) * 60);
+            sessionInSeconds = parseInt(document.getElementById('session-time').value) * 60;
+            breakinSeconds = parseInt(document.getElementById('break-time').value) * 60;
         }
     } else {
-        var targetId = document.getElementById(targetId);
-        var currentVal = parseInt(targetId.value);
+        targetId = document.getElementById(targetId);
+        currentVal = parseInt(targetId.value);
         if (currentVal >= 60) {
             return false;
         } else {
-            var newVal = (currentVal + 1).toString();
+            newVal = (currentVal + 1).toString();
             targetId.value = newVal;
+            sessionInSeconds = parseInt(document.getElementById('session-time').value) * 60;
+            breakinSeconds = parseInt(document.getElementById('break-time').value) * 60;
         }
     }
 }
@@ -58,61 +74,63 @@ function formatTime(time) {
     return mins + ":" + seconds;
 }
 
-
-var clock = document.getElementById('clock');
-var audio = document.getElementById('audio');
-
-function startTimer() {
-    var sessionInSeconds = parseInt(document.getElementById('session-time').value) * 60;
-    var breakinSeconds = parseInt(document.getElementById('break-time').value) * 60;
-    var status = document.getElementById('status');
-    status.innerHTML = "Time to Work";
-    var sessionT = sessionInSeconds;
-    var breakT = breakinSeconds;
-    var sessionTimer = setInterval(function () {
-        sessionT--;
-        clock.innerHTML = formatTime(sessionT);
-        if (sessionT <= 0) {
-            clearInterval(sessionTimer);
-            audio.play();
-            status.innerHTML = "Enjoy your Break";
-            var musicBtn = document.getElementById("music");
-            musicBtn.onclick = function () {
-                if (musicBtn.classList.contains("fa-volume-up")) {
-                    musicBtn.classList.remove("fa-volume-up");
-                    musicBtn.classList.add("fa-volume-off");
-                    if (status.innerHTML === "Enjoy your Break") {
-                        audio.pause();
-                    }
-                } else {
-                    musicBtn.classList.remove("fa-volume-off");
-                    musicBtn.classList.add("fa-volume-up");
-                    if (status.innerHTML === "Enjoy your Break") {
-                        audio.play();
-                    }
-                }
-            };
-            var breakTimer = setInterval(function () {
-                breakT--;
-                clock.innerHTML = formatTime(breakT);
-                if (breakT < 0) {
-                    clearInterval(breakTimer);
-                    audio.load();
-                    sessionT = sessionInSeconds;
-                    breakT = breakinSeconds;
-                    startTimer();
-                }
-            }, 1000);
-        }
-    }, 1000);
-
-}
-
 function stopTimer() {
-    for (var i = 1; i < 10; i++) {
+    for (var i = 1; i < 999; i++) {
         window.clearInterval(i);
     }
 }
+
+var clock = document.getElementById('clock');
+var audio = document.getElementById('audio');
+var statusPara = document.getElementById('status');
+
+function startTimer() {
+    statusPara.innerHTML = "Time to Work";
+    var sessionStart = setInterval(sessionTimer, 1000);
+    var breakStart;
+
+    function sessionTimer() {
+        if (sessionInSeconds >= 1) {
+            sessionInSeconds--;
+            clock.innerHTML = formatTime(sessionInSeconds);
+        } else if (sessionInSeconds <= 0) {
+            clearInterval(sessionStart);
+            audio.play();
+            statusPara.innerHTML = "Enjoy your Break";
+            breakStart = setInterval(breakTimer, 1000);
+        }
+    }
+
+    function breakTimer() {
+        if (breakinSeconds >= 1) {
+            breakinSeconds--;
+            clock.innerHTML = formatTime(breakinSeconds);
+        } else if (breakinSeconds <= 0) {
+            clearInterval(breakStart);
+            audio.load();
+            startTimer();
+        }
+    }
+
+}
+
+var musicBtn = document.getElementById("music");
+musicBtn.onclick = function () {
+    if (musicBtn.classList.contains("fa-volume-up")) {
+        musicBtn.classList.remove("fa-volume-up");
+        musicBtn.classList.add("fa-volume-off");
+        if (statusPara.innerHTML === "Enjoy your Break") {
+            audio.pause();
+        }
+    } else {
+        musicBtn.classList.remove("fa-volume-off");
+        musicBtn.classList.add("fa-volume-up");
+        if (statusPara.innerHTML === "Enjoy your Break") {
+            audio.play();
+        }
+    }
+};
+
 
 var buttons = document.getElementsByTagName("button");
 var toggleBtn = document.getElementById('timer-toggle');
@@ -120,7 +138,8 @@ toggleBtn.onclick = function () {
     if (toggleBtn.innerHTML === "Stop Timer") {
         toggleBtn.innerHTML = "Start Timer";
         stopTimer();
-        for(var i = 0; i <= 3; i++){
+        var i;
+        for (i = 0; i <= 3; i++) {
             buttons[i].disabled = false;
         }
         audio.pause();
@@ -128,30 +147,22 @@ toggleBtn.onclick = function () {
     } else {
         startTimer();
         toggleBtn.innerHTML = "Stop Timer";
-        for(var i = 0; i <= 3; i++){
+        var i;
+        for (i = 0; i <= 3; i++) {
             buttons[i].disabled = true;
         }
     }
 };
 
 var resetBtn = document.getElementById("timer-reset");
-resetBtn.onclick = function() {
-     if(toggleBtn.innerHTML === "Stop Timer"){
-         toggleBtn.click();
-     }
-     document.getElementById('session-time').value = "25";
-     document.getElementById('break-time').value = "5";
-     document.getElementById('clock').innerHTML = "25:00"
-
-};
-
-var musicBtn = document.getElementById("music");
-musicBtn.onclick = function () {
-    if (musicBtn.classList.contains("fa-volume-up")) {
-        musicBtn.classList.remove("fa-volume-up");
-        musicBtn.classList.add("fa-volume-off");
-    } else {
-        musicBtn.classList.remove("fa-volume-off");
-        musicBtn.classList.add("fa-volume-up");
+resetBtn.onclick = function () {
+    if (toggleBtn.innerHTML === "Stop Timer") {
+        toggleBtn.click();
     }
+    document.getElementById('session-time').value = "25";
+    document.getElementById('break-time').value = "5";
+    document.getElementById('clock').innerHTML = "25:00";
+    sessionInSeconds = parseInt(document.getElementById('session-time').value) * 60;
+    breakinSeconds = parseInt(document.getElementById('break-time').value) * 60;
+
 };
