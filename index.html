@@ -16,9 +16,9 @@
             <div class="break-time-control">
                 <h2>Break Time</h2>
                 <div class="btn-container">
-                    <button type="button" class="left-border control-btns black" onclick="decrement('break-time')">-</button>
+                    <button type="button" class="left-border control-btns animate black" onclick="decrement('break-time')">-</button>
                     <input id="break-time" type="text" value="5">
-                    <button type="button" class="right-border control-btns black" onclick="increment('break-time')">+</button>
+                    <button type="button" class="right-border control-btns animate black" onclick="increment('break-time')">+</button>
                 </div>
             </div>
             <div>
@@ -28,9 +28,9 @@
             <div class="session-time-control">
                 <h2>Session Time</h2>
                 <div class="btn-container">
-                    <button type="button" class="left-border control-btns black" onclick="decrement('session-time')">-</button>
+                    <button type="button" class="left-border control-btns animate black" onclick="decrement('session-time')">-</button>
                     <input id="session-time" type="text" value="25">
-                    <button type="button" class="right-border control-btns black" onclick="increment('session-time')">+</button>
+                    <button type="button" class="right-border control-btns animate black" onclick="increment('session-time')">+</button>
                 </div>
             </div>
         </section>
@@ -41,9 +41,12 @@
                 <p id="status">Time to Work</p>
             </div>
             <audio id="audio">
-                <source src="music1.mp3" type="audio/mpeg"></source>
+                <source src="https://rawgit.com/nawazishali/pomodoro-clock/master/music1.mp3" type="audio/mpeg"></source>
             </audio>
-            <button type="button" class="black" id="timer-toggle">Start Timer</button>
+            <div id="master-btns">
+                <button type="button" class="animate black" id="timer-toggle">Start Timer</button>
+                <button type="button" class="animate black" id="timer-reset">Reset</button>
+            </div>
         </section>
     </main>
     <footer><p>Crafted & Created by <a style="color: black;" href="https://nawazishali.github.io" target="_blank">Nawazish Ali</a> a student at <a style="color: black;" href="https://freecodecamp.com/nawazishali" target="_blank">FreeCodeCamp</a></p></footer>
