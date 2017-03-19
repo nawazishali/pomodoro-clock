@@ -134,6 +134,17 @@ toggleBtn.onclick = function () {
     }
 };
 
+var resetBtn = document.getElementById("timer-reset");
+resetBtn.onclick = function() {
+     if(toggleBtn.innerHTML === "Stop Timer"){
+         toggleBtn.click();
+     }
+     document.getElementById('session-time').value = "25";
+     document.getElementById('break-time').value = "5";
+     document.getElementById('clock').innerHTML = "25:00"
+
+};
+
 var musicBtn = document.getElementById("music");
 musicBtn.onclick = function () {
     if (musicBtn.classList.contains("fa-volume-up")) {
