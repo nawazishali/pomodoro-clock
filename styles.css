@@ -12,8 +12,8 @@ body {
     padding: 20px;
     width: 800px;
     box-shadow: 0px 0px 10px black;
-    transition: all 1.5s;
-    -webkit-transition: all 1.5s;
+    transition: all 1s;
+    -webkit-transition: all 1s;
     border-radius: 10px;
     background: #ECE9E6;
     /* fallback for old browsers */
@@ -30,8 +30,8 @@ body {
     font-size: 100px;
     text-shadow: 0px 1px 0px #999, 0px 2px 0px #888, 0px 3px 0px #777, 0px 4px 0px #666, 0px 5px 0px #555, 0px 6px 0px #444, 0px 7px 0px #333, 0px 8px 7px #001135;
     margin: 0;
-    transition: all 1.5s;
-    -webkit-transition: all 1.5s; }
+    transition: all 1s;
+    -webkit-transition: all 1s; }
     @media (max-width: 842px) {
       /* line 26, C:/Users/Zahra Nawazish/Desktop/Pomodoro Clock/styles.scss */
       body main h1 {
@@ -41,8 +41,8 @@ body {
 h2 {
   font-size: 40px;
   margin: 10px;
-  transition: all 1.5s;
-  -webkit-transition: all 1.5s; }
+  transition: all 1s;
+  -webkit-transition: all 1s; }
   @media (max-width: 842px) {
     /* line 38, C:/Users/Zahra Nawazish/Desktop/Pomodoro Clock/styles.scss */
     h2 {
@@ -73,8 +73,8 @@ h2 {
   justify-content: center;
   margin: 0 auto;
   width: 200px;
-  transition: all 1.5s;
-  -webkit-transition: all 1.5s; }
+  transition: all 1s;
+  -webkit-transition: all 1s; }
   @media (max-width: 842px) {
     /* line 66, C:/Users/Zahra Nawazish/Desktop/Pomodoro Clock/styles.scss */
     .btn-container {
@@ -97,8 +97,8 @@ h2 {
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     color: white;
     pointer-events: none;
-    transition: all 1.5s;
-    -webkit-transition: all 1.5s; }
+    transition: all 1s;
+    -webkit-transition: all 1s; }
     @media (max-width: 842px) {
       /* line 77, C:/Users/Zahra Nawazish/Desktop/Pomodoro Clock/styles.scss */
       .btn-container input {
@@ -114,8 +114,8 @@ h2 {
   width: 70px;
   height: 50px;
   border: none;
-  transition: all 1.5s;
-  -webkit-transition: all 1.5s; }
+  transition: all 1s;
+  -webkit-transition: all 1s; }
   /* line 111, C:/Users/Zahra Nawazish/Desktop/Pomodoro Clock/styles.scss */
   .control-btns:hover {
     cursor: pointer; }
@@ -141,8 +141,8 @@ h2 {
   border-bottom-right-radius: 10px;
   border-bottom: 5px solid #161616;
   text-shadow: 0px -2px #161616;
-  transition: all 1.5s;
-  -webkit-transition: all 1.5s; }
+  transition: all 1s;
+  -webkit-transition: all 1s; }
   /* line 137, C:/Users/Zahra Nawazish/Desktop/Pomodoro Clock/styles.scss */
   #timer-toggle:hover {
     cursor: pointer; }
@@ -182,8 +182,8 @@ h2 {
     font-size: 120px;
     text-shadow: none;
     color: rgba(45, 45, 45, 0.9);
-    transition: all 1.5s;
-    -webkit-transition: all 1.5s; }
+    transition: all 1s;
+    -webkit-transition: all 1s; }
     @media (max-width: 842px) {
       /* line 172, C:/Users/Zahra Nawazish/Desktop/Pomodoro Clock/styles.scss */
       #clock-container h1 {
@@ -195,8 +195,8 @@ h2 {
     color: rgba(45, 45, 45, 0.9); }
 
 .fa-3x {
-    transition: all 1.5s;
-    -webkit-transition: all 1.5s;
+    transition: all 1s;
+    -webkit-transition: all 1s;
 }
 
 @media (max-width: 842px) {
