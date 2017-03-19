@@ -124,15 +124,21 @@ h2 {
     }
 }
 
+#master-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
 #timer-toggle {
     background-color: $button-color;
     color: white;
     font-size: 50px;
-    width: 90%;
+    width: 60%;
     height: 80px;
     border: none;
     border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-right: solid 1px #151515;
     border-bottom: 5px solid #161616;
     text-shadow: 0px -2px #161616;
     &:hover {
@@ -148,6 +154,39 @@ h2 {
     }
     transition: all 1s;
     -webkit-transition: all 1s;
+    transition: transform 0.1s;
+    -webkit-transition: -webkit-transform 0.1s;
+    @media (max-width: 842px) {
+        font-size: 25px;
+    }
+}
+
+#timer-reset {
+    background-color: $button-color;
+    color: white;
+    font-size: 50px;
+    width: 30%;
+    height: 80px;
+    border: none;
+    border-bottom-right-radius: 10px;
+    border-left: solid 1px #151515;
+    border-bottom: 5px solid #161616;
+    text-shadow: 0px -2px #161616;
+    &:hover {
+        cursor: pointer;
+    }
+    &:focus {
+        outline: none;
+    }
+    &:active {
+        transform: translate(0px, 0px);
+        -webkit-transform: translate(0px, 0px);
+        border-bottom: 0px solid;
+    }
+    transition: all 1s;
+    -webkit-transition: all 1s;
+    transition: transform 0.1s;
+    -webkit-transition: -webkit-transform 0.1s;
     @media (max-width: 842px) {
         font-size: 25px;
     }
@@ -198,8 +237,8 @@ h2 {
 
 
 .animate {
-    transition: all 0.1s;
-    -webkit-transition: all 0.1s;
+    transition: transform 0.1s;
+    -webkit-transition: -webkit-transform 0.1s;
 }
 
 .black {
