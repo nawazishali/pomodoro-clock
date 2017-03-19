@@ -70,8 +70,8 @@ function startTimer() {
     var sessionT = sessionInSeconds;
     var breakT = breakinSeconds;
     var sessionTimer = setInterval(function () {
-        clock.innerHTML = formatTime(sessionT);
         sessionT--;
+        clock.innerHTML = formatTime(sessionT);
         if (sessionT <= 0) {
             clearInterval(sessionTimer);
             audio.play();
@@ -93,8 +93,8 @@ function startTimer() {
                 }
             };
             var breakTimer = setInterval(function () {
-                clock.innerHTML = formatTime(breakT);
                 breakT--;
+                clock.innerHTML = formatTime(breakT);
                 if (breakT < 0) {
                     clearInterval(breakTimer);
                     audio.load();
@@ -119,18 +119,18 @@ var toggleBtn = document.getElementById('timer-toggle');
 toggleBtn.onclick = function () {
     if (toggleBtn.innerHTML === "Stop Timer") {
         toggleBtn.innerHTML = "Start Timer";
+        stopTimer();
         for(var i = 0; i <= 3; i++){
             buttons[i].disabled = false;
         }
-        stopTimer();
         audio.pause();
         audio.load();
     } else {
+        startTimer();
         toggleBtn.innerHTML = "Stop Timer";
         for(var i = 0; i <= 3; i++){
             buttons[i].disabled = true;
         }
-        startTimer();
     }
 };
 
