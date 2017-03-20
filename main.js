@@ -6,8 +6,10 @@ var statusPara = document.getElementById('status');
 var buttons = document.getElementsByTagName("button");
 var toggleBtn = document.getElementById('timer-toggle');
 var resetBtn = document.getElementById("timer-reset");
-var sessionInSeconds = parseInt(document.getElementById('session-time').value) * 60;
-var breakinSeconds = parseInt(document.getElementById('break-time').value) * 60;
+var sessionTime = document.getElementById('session-time');
+var breakTime = document.getElementById('break-time');
+var sessionInSeconds = parseInt(sessionTime.value) * 60;
+var breakinSeconds = parseInt(breakTime.value) * 60;
 
 function formatTime(time) {
     var seconds = time % 60;
@@ -31,8 +33,8 @@ function decrement(targetId) {
     } else {
         newVal = (currentVal - 1).toString();
         target.value = newVal;
-        sessionInSeconds = parseInt(document.getElementById('session-time').value) * 60;
-        breakinSeconds = parseInt(document.getElementById('break-time').value) * 60;
+        sessionInSeconds = parseInt(sessionTime.value) * 60;
+        breakinSeconds = parseInt(breakTime.value) * 60;
     }
     if (targetId === "session-time") {
         clock.innerHTML = formatTime(parseInt(newVal) * 60);
@@ -50,8 +52,8 @@ function increment(targetId) {
     } else {
         newVal = (currentVal + 1).toString();
         target.value = newVal;
-        sessionInSeconds = parseInt(document.getElementById('session-time').value) * 60;
-        breakinSeconds = parseInt(document.getElementById('break-time').value) * 60;
+        sessionInSeconds = parseInt(sessionTime.value) * 60;
+        breakinSeconds = parseInt(breakTime.value) * 60;
     }
     if (targetId === "session-time") {
         clock.innerHTML = formatTime(parseInt(newVal) * 60);
@@ -88,8 +90,8 @@ function startTimer() {
         } else if (breakinSeconds <= 0) {
             clearInterval(breakStart);
             audio.load();
-            sessionInSeconds = parseInt(document.getElementById('session-time').value) * 60;
-            breakinSeconds = parseInt(document.getElementById('break-time').value) * 60;
+            sessionInSeconds = parseInt(sessionTime.value) * 60;
+            breakinSeconds = parseInt(breakTime.value) * 60;
             startTimer();
         }
     }
@@ -139,7 +141,7 @@ resetBtn.onclick = function () {
     document.getElementById('session-time').value = "25";
     document.getElementById('break-time').value = "5";
     clock.innerHTML = "25:00";
-    sessionInSeconds = parseInt(document.getElementById('session-time').value) * 60;
-    breakinSeconds = parseInt(document.getElementById('break-time').value) * 60;
+    sessionInSeconds = parseInt(sessionTime.value) * 60;
+    breakinSeconds = parseInt(breakTime.value) * 60;
 
 };
