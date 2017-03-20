@@ -1,66 +1,13 @@
 /* jshint undef: true, unused: false, evil: true */
 /* globals document, window, setInterval, clearInterval */
-
+var clock = document.getElementById('clock');
+var audio = document.getElementById('audio');
+var statusPara = document.getElementById('status');
+var buttons = document.getElementsByTagName("button");
+var toggleBtn = document.getElementById('timer-toggle');
+var resetBtn = document.getElementById("timer-reset");
 var sessionInSeconds = parseInt(document.getElementById('session-time').value) * 60;
 var breakinSeconds = parseInt(document.getElementById('break-time').value) * 60;
-
-function decrement(targetId) {
-    var currentVal, newVal;
-    if (targetId === "session-time") {
-        targetId = document.getElementById(targetId);
-        currentVal = parseInt(targetId.value);
-        if (currentVal <= 0) {
-            return false;
-        } else {
-            newVal = (currentVal - 1).toString();
-            targetId.value = newVal;
-            document.getElementById('clock').innerHTML = formatTime(parseInt(newVal) * 60);
-            sessionInSeconds = parseInt(document.getElementById('session-time').value) * 60;
-            breakinSeconds = parseInt(document.getElementById('break-time').value) * 60;
-        }
-    } else {
-        targetId = document.getElementById(targetId);
-        currentVal = parseInt(targetId.value);
-        if (currentVal <= 0) {
-            return false;
-        } else {
-            newVal = (currentVal - 1).toString();
-            targetId.value = newVal;
-            sessionInSeconds = parseInt(document.getElementById('session-time').value) * 60;
-            breakinSeconds = parseInt(document.getElementById('break-time').value) * 60;
-        }
-    }
-
-
-}
-
-function increment(targetId) {
-    var currentVal, newVal;
-    if (targetId === "session-time") {
-        targetId = document.getElementById(targetId);
-        currentVal = parseInt(targetId.value);
-        if (currentVal >= 60) {
-            return false;
-        } else {
-            newVal = (currentVal + 1).toString();
-            targetId.value = newVal;
-            document.getElementById('clock').innerHTML = formatTime(parseInt(newVal) * 60);
-            sessionInSeconds = parseInt(document.getElementById('session-time').value) * 60;
-            breakinSeconds = parseInt(document.getElementById('break-time').value) * 60;
-        }
-    } else {
-        targetId = document.getElementById(targetId);
-        currentVal = parseInt(targetId.value);
-        if (currentVal >= 60) {
-            return false;
-        } else {
-            newVal = (currentVal + 1).toString();
-            targetId.value = newVal;
-            sessionInSeconds = parseInt(document.getElementById('session-time').value) * 60;
-            breakinSeconds = parseInt(document.getElementById('break-time').value) * 60;
-        }
-    }
-}
 
 function formatTime(time) {
     var seconds = time % 60;
@@ -74,15 +21,49 @@ function formatTime(time) {
     return mins + ":" + seconds;
 }
 
+function decrement(targetId) {
+    var currentVal, newVal;
+    var target = document.getElementById(targetId);
+    currentVal = parseInt(target.value);
+
+    if (currentVal <= 0) {
+        return false;
+    } else {
+        newVal = (currentVal - 1).toString();
+        target.value = newVal;
+        sessionInSeconds = parseInt(document.getElementById('session-time').value) * 60;
+        breakinSeconds = parseInt(document.getElementById('break-time').value) * 60;
+    }
+    if (targetId === "session-time") {
+        clock.innerHTML = formatTime(parseInt(newVal) * 60);
+    }
+
+}
+
+function increment(targetId) {
+    var currentVal, newVal;
+    var target = document.getElementById(targetId);
+    currentVal = parseInt(target.value);
+
+    if (currentVal >= 60) {
+        return false;
+    } else {
+        newVal = (currentVal + 1).toString();
+        target.value = newVal;
+        sessionInSeconds = parseInt(document.getElementById('session-time').value) * 60;
+        breakinSeconds = parseInt(document.getElementById('break-time').value) * 60;
+    }
+    if (targetId === "session-time") {
+        console.log(clock);
+        clock.innerHTML = formatTime(parseInt(newVal) * 60);
+    }
+}
+
 function stopTimer() {
     for (var i = 1; i < 999; i++) {
         window.clearInterval(i);
     }
 }
-
-var clock = document.getElementById('clock');
-var audio = document.getElementById('audio');
-var statusPara = document.getElementById('status');
 
 function startTimer() {
     statusPara.innerHTML = "Time to Work";
@@ -133,14 +114,11 @@ musicBtn.onclick = function () {
     }
 };
 
-
-var buttons = document.getElementsByTagName("button");
-var toggleBtn = document.getElementById('timer-toggle');
 toggleBtn.onclick = function () {
+    var i;
     if (toggleBtn.innerHTML === "Stop Timer") {
         toggleBtn.innerHTML = "Start Timer";
         stopTimer();
-        var i;
         for (i = 0; i <= 3; i++) {
             buttons[i].disabled = false;
         }
@@ -149,14 +127,12 @@ toggleBtn.onclick = function () {
     } else {
         startTimer();
         toggleBtn.innerHTML = "Stop Timer";
-        var i;
         for (i = 0; i <= 3; i++) {
             buttons[i].disabled = true;
         }
     }
 };
 
-var resetBtn = document.getElementById("timer-reset");
 resetBtn.onclick = function () {
     if (toggleBtn.innerHTML === "Stop Timer") {
         toggleBtn.click();
