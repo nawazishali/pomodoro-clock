@@ -23,40 +23,32 @@ function formatTime(time) {
     return mins + ":" + seconds;
 }
 
-function decrement(targetId) {
-    var currentVal, newVal;
-    var target = document.getElementById(targetId);
-    currentVal = parseInt(target.value);
-
-    if (currentVal <= 0) {
-        return false;
-    } else {
-        newVal = (currentVal - 1).toString();
-        target.value = newVal;
-        sessionInSeconds = parseInt(sessionTime.value) * 60;
-        breakinSeconds = parseInt(breakTime.value) * 60;
-    }
-    if (targetId === "session-time") {
-        clock.innerHTML = formatTime(parseInt(newVal) * 60);
-    }
-
+function updateSessionAndBreak() {
+    sessionInSeconds = parseInt(sessionTime.value) * 60;
+    breakinSeconds = parseInt(breakTime.value) * 60;
 }
 
-function increment(targetId) {
+
+/**
+  * @param {string} targetId
+  * @param {integer} increment_value can be 1 for increasing or -1 for decreasing
+  */
+function updateCounter(targetId, increment_value) {
     var currentVal, newVal;
     var target = document.getElementById(targetId);
     currentVal = parseInt(target.value);
 
-    if (currentVal >= 60) {
+    if (currentVal <= 0 || currentVal >= 60) {
         return false;
-    } else {
-        newVal = (currentVal + 1).toString();
-        target.value = newVal;
-        sessionInSeconds = parseInt(sessionTime.value) * 60;
-        breakinSeconds = parseInt(breakTime.value) * 60;
     }
+
+    newVal = currentVal + increment_value; // no need to parseString here
+    target.value = newVal;
+
+    updateSessionAndBreak();
+
     if (targetId === "session-time") {
-        clock.innerHTML = formatTime(parseInt(newVal) * 60);
+        clock.innerHTML = formatTime(newVal * 60);
     }
 }
 
@@ -90,8 +82,7 @@ function startTimer() {
         } else if (breakinSeconds <= 0) {
             clearInterval(breakStart);
             audio.load();
-            sessionInSeconds = parseInt(sessionTime.value) * 60;
-            breakinSeconds = parseInt(breakTime.value) * 60;
+            updateSessionAndBreak();
             startTimer();
         }
     }
@@ -141,7 +132,6 @@ resetBtn.onclick = function () {
     document.getElementById('session-time').value = "25";
     document.getElementById('break-time').value = "5";
     clock.innerHTML = "25:00";
-    sessionInSeconds = parseInt(sessionTime.value) * 60;
-    breakinSeconds = parseInt(breakTime.value) * 60;
+    updateSessionAndBreak();
 
 };

@@ -16,9 +16,9 @@
             <div class="break-time-control">
                 <h2>Break Time</h2>
                 <div class="btn-container">
-                    <button type="button" class="left-border control-btns black" onclick="decrement('break-time')">-</button>
+                    <button type="button" class="left-border control-btns black" onclick="updateCounter('break-time', -1)">-</button>
                     <input id="break-time" type="text" value="5">
-                    <button type="button" class="right-border control-btns black" onclick="increment('break-time')">+</button>
+                    <button type="button" class="right-border control-btns black" onclick="updateCounter('break-time', 1)">+</button>
                 </div>
             </div>
             <div>
@@ -28,9 +28,9 @@
             <div class="session-time-control">
                 <h2>Session Time</h2>
                 <div class="btn-container">
-                    <button type="button" class="left-border control-btns black" onclick="decrement('session-time')">-</button>
+                    <button type="button" class="left-border control-btns black" onclick="updateCounter('session-time', -1)">-</button>
                     <input id="session-time" type="text" value="25">
-                    <button type="button" class="right-border control-btns black" onclick="increment('session-time')">+</button>
+                    <button type="button" class="right-border control-btns black" onclick="updateCounter('session-time', 1)">+</button>
                 </div>
             </div>
         </section>
